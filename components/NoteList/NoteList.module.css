@@ -1,0 +1,127 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.listItem {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 180px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #212529;
+}
+
+.content {
+  margin: 0;
+  flex-grow: 1;
+  font-size: 14px;
+  color: #495057;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.button {
+display: inline-block;
+  padding: 8px 16px;
+  background-color: #f51804;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(255, 0, 0, 0.3);
+}
+
+.button:hover {
+  background-color: #bb2d3b;
+   
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(255, 2, 2, 0.4);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #0d6efd;
+  background-color: #e7f1ff;
+  border: 1px solid #b6d4fe;
+  border-radius: 12px;
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.link {
+  align-self: flex-end;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #0d6efd; /* синій колір */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+}
+
+.link:hover {
+  background-color: #0b5ed7;
+}
+
+.Details {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+}
+
+.Details:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+}
+
+.Details:active {
+  background-color: #003f7f;
+  transform: scale(1);
+}
+
+.Details:focus {
+  outline: none;
+  border: 2px solid #0056b3;
+}
