@@ -5,35 +5,25 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createNote } from '../../lib/api';
 import { Note } from '../../types/note';
-import Joi, { ValidationError } from 'joi';
+import * as Yup from 'yup'; 
 
 export type NoteFormProps = {
   onClose: () => void;
 };
 
-const validationSchema = Joi.object({
-  title: Joi.string().min(3).required().messages({
-    'string.empty': 'Title is required',
-    'string.min': 'Must be at least 3 characters',
-  }),
-  content: Joi.string().max(500).messages({
-    'string.max': 'Max 500 characters',
-  }),
-  tag: Joi.string().valid('Todo', 'Work', 'Personal', 'Meeting', 'Shopping').required(),
+const validationSchema = Yup.object({
+  title: Yup.string()
+    .min(3, 'Must be at least 3 characters') 
+    .required('Title is required'),
+  content: Yup.string().max(500, 'Max 500 characters'), 
+  tag: Yup.string().oneOf(
+    ['Todo', 'Work', 'Personal', 'Meeting', 'Shopping'],
+    'Invalid tag'
+  ).required('Tag is required'),
 });
-
 
 type ValidationErrors = {
   [key: string]: string;
-};
-
-const validateJoi = (values: Record<string, unknown>): ValidationErrors => {
-  const { error } = validationSchema.validate(values, { abortEarly: false });
-  if (!error) return {};
-  return error.details.reduce<ValidationErrors>((acc, curr) => {
-    acc[curr.path[0]] = curr.message;
-    return acc;
-  }, {});
 };
 
 export default function NoteForm({ onClose }: NoteFormProps) {
@@ -50,7 +40,7 @@ export default function NoteForm({ onClose }: NoteFormProps) {
   return (
     <Formik
       initialValues={{ title: '', content: '', tag: 'Todo' as Note['tag'] }}
-      validate={validateJoi} // Валидация через Joi
+      validationSchema={validationSchema} // Використовуємо Yup для валідації
       onSubmit={(values, { resetForm }) => {
         mutation.mutate(values);
         resetForm();
